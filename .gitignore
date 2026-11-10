@@ -5,3 +5,4 @@ data/index/
 data/models/
 runs/
 .env
+.claude/

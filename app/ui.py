@@ -46,7 +46,7 @@ h1 { font-weight: 700; }
 .ra-draft p { line-height:1.65; text-align: justify; }
 .ra-draft a { color:#4F46E5; font-weight:600; text-decoration:none; }
 .ra-metric { background:#fff; border:1px solid #E6E8F0; border-radius:14px; padding:12px 16px; }
-.ra-metric .v { font-size:1.6rem; font-weight:700; color:#1E2235; } .ra-metric .l { color:#6B7280; font-size:.8rem; }
+.ra-metric .v { font-size:1.35rem; font-weight:700; color:#1E2235; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; } .ra-metric .l { color:#6B7280; font-size:.8rem; }
 .ra-err { background:#FEF2F2; border:1px solid #FECACA; border-radius:14px; padding:14px 18px; color:#7F1D1D; }
 .ra-err code { background:#FFE4E6; }
 [data-testid="stSidebar"] { background: #FFFFFF; border-right: 1px solid #E6E8F0; }

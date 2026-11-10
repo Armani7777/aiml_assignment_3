@@ -1,0 +1,46 @@
+scenario,group,name,repeat,success,status,error,n_selected,steps,llm_calls,revisions,time_s,llm_mode,support,accuracy,completeness,run_id
+S01,содержательный,Типовой запуск (TXT),1,1,done,,6,33,12,0,0.67,offline,5.0,4.0,5.0,eval-S01-r1
+S01,содержательный,Типовой запуск (TXT),2,1,done,,6,33,12,0,0.25,offline,5.0,4.0,5.0,eval-S01-r2
+S01,содержательный,Типовой запуск (TXT),3,1,done,,6,33,12,0,0.26,offline,5.0,4.0,5.0,eval-S01-r3
+S02,содержательный,Фокус на годах 2021–2023,1,1,done,,6,34,12,0,0.26,offline,5.0,4.0,5.0,eval-S02-r1
+S02,содержательный,Фокус на годах 2021–2023,2,1,done,,6,34,12,0,0.27,offline,5.0,4.0,5.0,eval-S02-r2
+S02,содержательный,Фокус на годах 2021–2023,3,1,done,,6,34,12,0,0.28,offline,5.0,4.0,5.0,eval-S02-r3
+S03,содержательный,Фокус на категории cs.IR,1,1,done,,6,32,10,0,0.35,offline,5.0,4.0,5.0,eval-S03-r1
+S03,содержательный,Фокус на категории cs.IR,2,1,done,,6,32,10,0,0.35,offline,5.0,4.0,5.0,eval-S03-r2
+S03,содержательный,Фокус на категории cs.IR,3,1,done,,6,32,10,0,0.35,offline,5.0,4.0,5.0,eval-S03-r3
+S04,содержательный,Другое число статей (4),1,1,done,,4,29,8,0,0.25,offline,5.0,4.0,5.0,eval-S04-r1
+S04,содержательный,Другое число статей (4),2,1,done,,4,29,8,0,0.25,offline,5.0,4.0,5.0,eval-S04-r2
+S04,содержательный,Другое число статей (4),3,1,done,,4,29,8,0,0.24,offline,5.0,4.0,5.0,eval-S04-r3
+S05,содержательный,Вход DOCX (RAG),1,1,done,,6,31,10,0,0.46,offline,5.0,4.0,5.0,eval-S05-r1
+S05,содержательный,Вход DOCX (RAG),2,1,done,,6,31,10,0,0.25,offline,5.0,4.0,5.0,eval-S05-r2
+S05,содержательный,Вход DOCX (RAG),3,1,done,,6,31,10,0,0.3,offline,5.0,4.0,5.0,eval-S05-r3
+S06,содержательный,Вход PDF (GNN),1,1,done,,6,31,10,0,0.56,offline,5.0,4.0,5.0,eval-S06-r1
+S06,содержательный,Вход PDF (GNN),2,1,done,,6,31,10,0,0.32,offline,5.0,4.0,5.0,eval-S06-r2
+S06,содержательный,Вход PDF (GNN),3,1,done,,6,31,10,0,0.32,offline,5.0,4.0,5.0,eval-S06-r3
+S07,содержательный,Расплывчатый текст,1,1,failed,not_scientific,0,4,1,0,0.0,offline,,,,eval-S07-r1
+S07,содержательный,Расплывчатый текст,2,1,failed,not_scientific,0,4,1,0,0.0,offline,,,,eval-S07-r2
+S07,содержательный,Расплывчатый текст,3,1,failed,not_scientific,0,4,1,0,0.0,offline,,,,eval-S07-r3
+S08,ошибки входа,Нет научной задачи,1,1,failed,not_scientific,0,4,1,0,0.0,offline,,,,eval-S08-r1
+S08,ошибки входа,Нет научной задачи,2,1,failed,not_scientific,0,4,1,0,0.0,offline,,,,eval-S08-r2
+S08,ошибки входа,Нет научной задачи,3,1,failed,not_scientific,0,4,1,0,0.0,offline,,,,eval-S08-r3
+S09,ошибки входа,Слишком короткий файл,1,1,failed,too_short,0,2,0,0,0.0,offline,,,,eval-S09-r1
+S09,ошибки входа,Слишком короткий файл,2,1,failed,too_short,0,2,0,0,0.0,offline,,,,eval-S09-r2
+S09,ошибки входа,Слишком короткий файл,3,1,failed,too_short,0,2,0,0,0.0,offline,,,,eval-S09-r3
+S10,ошибки входа,Неверный формат (CSV),1,1,failed,unsupported_format,0,2,0,0,0.0,offline,,,,eval-S10-r1
+S10,ошибки входа,Неверный формат (CSV),2,1,failed,unsupported_format,0,2,0,0,0.0,offline,,,,eval-S10-r2
+S10,ошибки входа,Неверный формат (CSV),3,1,failed,unsupported_format,0,2,0,0,0.0,offline,,,,eval-S10-r3
+S11,ошибки входа,Нет файла,1,1,failed,file_missing,0,2,0,0,0.0,offline,,,,eval-S11-r1
+S11,ошибки входа,Нет файла,2,1,failed,file_missing,0,2,0,0,0.0,offline,,,,eval-S11-r2
+S11,ошибки входа,Нет файла,3,1,failed,file_missing,0,2,0,0,0.0,offline,,,,eval-S11-r3
+S12,ошибки окружения,Ollama выключена,1,1,failed,ollama_unavailable,0,0,0,0,2.39,,,,,eval-S12-r1
+S12,ошибки окружения,Ollama выключена,2,1,failed,ollama_unavailable,0,0,0,0,2.28,,,,,eval-S12-r2
+S12,ошибки окружения,Ollama выключена,3,1,failed,ollama_unavailable,0,0,0,0,2.27,,,,,eval-S12-r3
+S13,защиты,Лимит шагов (10),1,1,limit,step_limit,0,11,1,0,0.24,offline,,,,eval-S13-r1
+S13,защиты,Лимит шагов (10),2,1,limit,step_limit,0,11,1,0,0.22,offline,,,,eval-S13-r2
+S13,защиты,Лимит шагов (10),3,1,limit,step_limit,0,11,1,0,0.24,offline,,,,eval-S13-r3
+S14,защиты,"Лимит времени (0,05 с)",1,1,limit,time_limit,0,8,1,0,0.18,offline,,,,eval-S14-r1
+S14,защиты,"Лимит времени (0,05 с)",2,1,limit,time_limit,0,8,1,0,0.22,offline,,,,eval-S14-r2
+S14,защиты,"Лимит времени (0,05 с)",3,1,limit,time_limit,0,8,1,0,0.23,offline,,,,eval-S14-r3
+S15,защиты,MAX_REVISIONS = 0,1,1,done,,6,33,12,0,0.3,offline,5.0,4.0,5.0,eval-S15-r1
+S15,защиты,MAX_REVISIONS = 0,2,1,done,,6,33,12,0,0.31,offline,5.0,4.0,5.0,eval-S15-r2
+S15,защиты,MAX_REVISIONS = 0,3,1,done,,6,33,12,0,0.32,offline,5.0,4.0,5.0,eval-S15-r3

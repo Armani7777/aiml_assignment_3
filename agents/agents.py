@@ -21,7 +21,9 @@ from tools.search import embed, hybrid_search, metadata_filter
 SCI_WORDS = set("""method model algorithm dataset experiment evaluation accuracy benchmark learning neural
 network training retrieval classification analysis approach framework results propose metric optimization
 inference language transformer graph detection метод модель алгоритм данных эксперимент оценка точность
-обучение нейронн сеть исследован задача анализ подход результат метрик классификац поиск""".split())
+обучение нейронн сеть исследован задача анализ подход результат метрик классификац поиск agent code
+generation benchmark pass correctness evaluate measure""".split())
+SCI_STEMS = {w[:5] for w in SCI_WORDS}
 
 
 # ---------- схемы ответов LLM ----------
@@ -90,7 +92,7 @@ class DocumentAnalyst(Agent):
 
         def fb() -> dict:
             toks = tokenize(text)
-            sci = sum(1 for t in toks if any(t.startswith(w) for w in SCI_WORDS))
+            sci = sum(1 for t in toks if t[:5] in SCI_STEMS)
             sents = [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if len(s.strip()) > 40]
             prob = next((s for s in sents if re.search(r"propose|address|aim|we study|задач|цель|предлага", s, re.I)),
                         sents[0] if sents else text[:200])
