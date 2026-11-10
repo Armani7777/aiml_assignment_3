@@ -187,8 +187,8 @@ r = t.add_run("Часть магистерской диссертации «Ра
               "научно-исследовательской работы»"); r.italic = True; r.font.size = Pt(12)
 for _ in range(8):
     doc.add_paragraph()
-for line in ("Дисциплина: Artificial Intelligence and Machine Learning", "Магистрант: ______________________",
-             "Группа: ______________", "Репозиторий: github.com/Armani7777/aiml_assignment_3"):
+for line in ("Дисциплина: Artificial Intelligence and Machine Learning", "Магистрант: Арман Тұрсынбаев",
+             "Группа: CSE-2506M", "Репозиторий: github.com/Armani7777/aiml_assignment_3"):
     p = doc.add_paragraph(line); p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 for _ in range(4):
     doc.add_paragraph()
