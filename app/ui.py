@@ -137,8 +137,8 @@ def run_registry() -> dict:
 def list_runs() -> list[str]:
     if not config.RUNS_DIR.exists():
         return []
-    runs = [p.parent.name for p in config.RUNS_DIR.glob("*/state.json")]
-    return sorted(runs, reverse=True)
+    files = sorted(config.RUNS_DIR.glob("*/state.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    return [p.parent.name for p in files]  # самые свежие прогоны — первыми
 
 
 def load_state(run_id: str) -> TaskState | None:

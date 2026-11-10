@@ -61,6 +61,12 @@ NOT_SCI = """Рецепт яблочного пирога
 """
 
 
+DEMO = """Reducing Hallucinations in Retrieval-Augmented Generation
+
+We study hallucination in retrieval-augmented generation for question answering with large language models. The research problem is that generated answers often contain claims that are not supported by the retrieved documents. We propose a method that retrieves passages with dense retrieval, re-ranks them, and verifies each generated claim against the evidence before producing the final answer. We evaluate faithfulness, attribution accuracy and answer quality on question answering benchmarks and compare with standard RAG baselines.
+"""
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "retrieval_paper.txt").write_text(RETRIEVAL, encoding="utf-8")
@@ -68,6 +74,7 @@ def main() -> None:
     (OUT / "vague_text.txt").write_text(VAGUE, encoding="utf-8")
     (OUT / "not_scientific.txt").write_text(NOT_SCI, encoding="utf-8")
     (OUT / "too_short.txt").write_text("Нейросети и поиск статей.", encoding="utf-8")
+    (OUT / "demo_rag_hallucination.txt").write_text(DEMO, encoding="utf-8")
     (OUT / "table.csv").write_text("id,title\n1,foo\n2,bar\n", encoding="utf-8")
 
     import docx

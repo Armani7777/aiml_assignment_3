@@ -29,6 +29,7 @@ st.set_page_config(page_title="ResearchAssist", page_icon="📚", layout="wide")
 ui.apply_theme()
 REG = ui.run_registry()
 SAMPLES = {
+    "★ Демо: галлюцинации в RAG (TXT)": "demo_rag_hallucination.txt",
     "Гибридный поиск похожих статей (TXT)": "retrieval_paper.txt",
     "Retrieval-Augmented Generation (DOCX)": "rag_paper.docx",
     "GNN для молекул (PDF)": "gnn_paper.pdf",
