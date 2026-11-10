@@ -1,0 +1,10 @@
+Hybrid Retrieval of Similar Scientific Papers
+
+Abstract. Finding papers that address the same research problem is a core step of literature review.
+We study the task of similar scientific paper retrieval on arXiv abstracts. We propose a hybrid retrieval
+method that combines sparse lexical matching with BM25 and dense semantic embeddings from a sentence
+transformer (all-MiniLM-L6-v2). Scores of both retrievers are z-normalized and fused with a weight on the
+dense component. We evaluate the approach on a corpus of 20,000 arXiv papers using recall@k and nDCG,
+and compare it with pure BM25, pure dense retrieval and reciprocal rank fusion. Results show that the
+hybrid method improves ranking quality for queries describing a research problem. We also discuss
+citation recommendation, query expansion and the use of large language models for re-ranking candidates.

@@ -1,0 +1,6 @@
+Some thoughts about technology and the future
+
+Technology changes many things in our life and it is interesting to look at how computers and data could
+help people in different areas. Maybe intelligent systems will be used more and more, and this raises many
+questions about learning, models and the role of data. It would be nice to understand these things better
+and to see what other people have written about it, especially about learning from data and networks.

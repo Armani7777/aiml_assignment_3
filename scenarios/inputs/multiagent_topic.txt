@@ -1,0 +1,6 @@
+Multi-agent large language model systems for software engineering
+
+This work studies how multiple LLM agents with distinct roles can cooperate to solve programming tasks.
+We propose an orchestrator that plans the task and routes messages between planner, coder, tester and
+reviewer agents with tool use. We evaluate code generation benchmarks, measure pass rates, cost in tokens,
+and the effect of self-reflection and critic feedback loops on correctness of generated programs.
