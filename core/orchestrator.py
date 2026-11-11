@@ -28,7 +28,7 @@ def parse_query(req: RunRequest) -> RunRequest:
         req.year_from, req.year_to = int(m.group(1)), int(m.group(2))
     elif m := re.search(r"(?:с|после|since|from)\s*(20\d\d)", q, re.I):
         req.year_from = int(m.group(1))
-    cats = re.findall(r"\b([a-z]{2,8}\.[A-Z]{2})\b", q)
+    cats = re.findall(r"\b((?:cs|eess|stat|math|physics|q-bio|q-fin|econ|astro-ph|cond-mat)\.[A-Za-z\-]{2,10})", q)
     if cats:
         req.categories = sorted(set(req.categories) | set(cats))
     if m := re.search(r"(?:фокус|focus)\s*[:—-]?\s*(.+)$", q, re.I):

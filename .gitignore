@@ -6,3 +6,4 @@ data/models/
 runs/
 .env
 .claude/
+presentation/shots/

@@ -94,3 +94,5 @@ def test_parse_query():
     r = parse_query(RunRequest(query="найди 8 статей 2021-2023 cs.CL фокус: dense retrieval"))
     assert (r.n_papers, r.year_from, r.year_to) == (8, 2021, 2023)
     assert r.categories == ["cs.CL"] and r.focus == "dense retrieval"
+    r = parse_query(RunRequest(query="6 статей eess.SP physics.geo-ph"))
+    assert r.categories == ["eess.SP", "physics.geo-ph"]

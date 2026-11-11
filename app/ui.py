@@ -50,6 +50,9 @@ h1 { font-weight: 700; }
 .ra-err { background:#FEF2F2; border:1px solid #FECACA; border-radius:14px; padding:14px 18px; color:#7F1D1D; }
 .ra-err code { background:#FFE4E6; }
 [data-testid="stSidebar"] { background: #FFFFFF; border-right: 1px solid #E6E8F0; }
+[data-stale="true"], .stale-element { opacity: 1 !important; transition: none !important; }
+.stAppDeployButton, [data-testid="stStatusWidget"], [data-testid="stMainMenu"] { display: none !important; }
+header[data-testid="stHeader"] { background: transparent; }
 .stButton>button[kind="primary"] { border-radius: 10px; font-weight:600; padding: .55rem 1.2rem; }
 </style>
 """

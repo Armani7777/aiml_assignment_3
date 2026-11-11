@@ -86,7 +86,7 @@ def metadata_filter(year_from: int | None, year_to: int | None, categories: list
                     db: Path | None = None) -> set[str]:
     """Возвращает id статей, прошедших фильтр по годам и категориям (SQLite)."""
     db = db or Index.load().db
-    q, args = "SELECT id, categories FROM papers WHERE 1=1", []
+    q, args = "SELECT id, categories || ' ' || primary_category FROM papers WHERE 1=1", []
     if year_from:
         q += " AND year >= ?"; args.append(year_from)
     if year_to:
@@ -119,7 +119,8 @@ def hybrid_search(query: str, k: int = config.CANDIDATES_K, allowed: set[str] | 
         r = rows[idx.ids[i]]
         out.append({
             "id": r["id"], "title": r["title"], "abstract": r["abstract"],
-            "authors": json.loads(r["authors"]), "categories": r["categories"].split(),
+            "authors": json.loads(r["authors"]),
+            "categories": list(dict.fromkeys([r["primary_category"]] + r["categories"].split())),
             "primary_category": r["primary_category"], "year": r["year"],
             "bm25": round(float(bm[i]), 3), "dense": round(float(dn[i]), 3), "score": round(float(score[i]), 3),
         })
