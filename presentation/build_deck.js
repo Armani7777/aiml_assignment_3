@@ -11,6 +11,7 @@ const ROOT = path.resolve(__dirname, "..");
 const IMG = path.join(__dirname, "img");
 const ICONS = process.env.ICONS;
 const OUT = path.join(__dirname, "ResearchAssist_презентация.pptx");
+const SPEECH = JSON.parse(fs.readFileSync(path.join(__dirname, "speech.json"), "utf8")); // текст выступления по слайдам
 
 // ---------- данные из results/ ----------
 const summary = JSON.parse(fs.readFileSync(path.join(ROOT, "results", "summary.json"), "utf8"));
@@ -43,8 +44,6 @@ pres.defineSlideMaster({
   objects: [
     { placeholder: { options: { name: "title", type: "title", x: 0.6, y: 0.4, w: 12.1, h: 0.85, fontFace: FONT,
       fontSize: 30, bold: true, color: P.ink, valign: "middle", align: "left", margin: 0 }, text: "" } },
-    { text: { text: "ResearchAssist · Арман Тұрсынбаев", options: { x: 0.6, y: 7.0, w: 6, h: 0.3, fontFace: FONT,
-      fontSize: 10, color: P.muted, margin: 0 } } },
   ],
   slideNumber: { x: 12.2, y: 7.0, w: 0.5, h: 0.3, fontFace: FONT, fontSize: 10, color: P.muted, align: "right" },
 });
@@ -109,8 +108,7 @@ const content = (title) => {
   s.addShape(pres.shapes.OVAL, { x: cx - 0.75, y: cy - 0.75, w: 1.5, h: 1.5, fill: { color: P.indigo },
     line: { color: "818CF8", width: 2 } });
   s.addImage({ path: icon("FaCompass"), x: cx - 0.38, y: cy - 0.38, w: 0.76, h: 0.76 });
-  s.addNotes("Здравствуйте. Мой проект — ResearchAssist, многоагентный помощник для обзора литературы. Это часть моей " +
-    "магистерской диссертации об интеллектуальном помощнике для научно-исследовательской работы.");
+  s.addNotes(SPEECH[0]);
 }
 
 // 2. Проблема
@@ -142,9 +140,7 @@ const content = (title) => {
   s.addImage({ path: icon("FaCheck", "t"), x: 7.5, y: 5.72, w: 0.36, h: 0.36 });
   txt(s, "[4] = arXiv:2209.03525 — найдено и проверено", { x: 7.98, y: 5.7, w: 4.6, h: 0.4, fontSize: 15, bold: true,
     color: "0F766E", valign: "middle" });
-  s.addNotes("Когда пишешь раздел Related Work, нужно найти статьи, которые решают ту же задачу, а не просто из той же " +
-    "области, и правильно на них сослаться. Если попросить обычную нейросеть, она часто выдумывает ссылки. " +
-    "Моя система работает только с реальными статьями и проверяет каждую ссылку.");
+  s.addNotes(SPEECH[1]);
 }
 
 // 3. Цель и вопросы
@@ -172,9 +168,7 @@ const content = (title) => {
     txt(s, req, { x: x + 0.35, y: y + 2.65, w: w - 0.7, h: 0.5, fontSize: 14, bold: true, color: "0F766E",
       align: "center", valign: "middle" });
   });
-  s.addNotes("Цель — по документу пользователя найти работы, которые решают ту же задачу, и написать проверенный " +
-    "черновик Related Work. Три вопроса: стабильна ли система — требование не меньше 90 процентов успешных прогонов; " +
-    "сбалансирована ли нагрузка — не больше 40 процентов вызовов на агента; и что даёт разделение на агентов.");
+  s.addNotes(SPEECH[2]);
 }
 
 // 4. Путь пользователя
@@ -203,9 +197,7 @@ const content = (title) => {
   s.addImage({ path: icon("FaCircleCheck", "t"), x: 0.9, y: 5.9, w: 0.45, h: 0.45 });
   txt(s, "На выходе — черновик обзора, в котором каждая ссылка ведёт на реальную статью arXiv",
     { x: 1.55, y: 5.65, w: 10.9, h: 0.95, fontSize: 16.5, bold: true, color: "0F766E", valign: "middle" });
-  s.addNotes("Пользователь загружает статью или пишет тему. Система выделяет задачу, ищет похожие работы, отбирает " +
-    "те, что решают ту же задачу, группирует их по подходам, находит пробелы и пишет черновик со ссылками. " +
-    "Каждая ссылка — реальная статья.");
+  s.addNotes(SPEECH[3]);
 }
 
 // 5. Архитектура
@@ -252,9 +244,7 @@ const content = (title) => {
     line: { color: P.amber, width: 2.5, endArrowType: "triangle" } });
   txt(s, "доработка ≤ 1 раза", { x: xs[0] + bw - 0.6, y: yBot + bh + 0.1, w: 1.8, h: 0.3, fontSize: 11.5, bold: true,
     color: "B45309", align: "center" });
-  s.addNotes("Оркестратор только планирует и передаёт типизированные сообщения AgentMessage. Шесть агентов, у каждого " +
-    "не больше двух инструментов. Состояние задачи — один pydantic-объект, сохраняется в JSON, а каждый вызов пишется " +
-    "в журнал. Если проверяющий нашёл ошибку, текст возвращается писателю, но не больше одного раза.");
+  s.addNotes(SPEECH[4]);
 }
 
 // 6. Код считает, модель рассуждает
@@ -280,9 +270,7 @@ const content = (title) => {
     { x: 9.25, y: 3.95, w: 3.2, h: 1.6, fontSize: 14, color: P.ink });
   txt(s, "Модель не может «посчитать неправильно»: все цифры, ссылки и правила — в коде",
     { x: 0.6, y: 6.1, w: 12.1, h: 0.5, fontSize: 16, italic: true, color: P.muted });
-  s.addNotes("Главный принцип: всё, что можно посчитать, считает код, а модель только рассуждает и пишет. " +
-    "Скоры поиска, дубли, статистику и проверку ссылок делает код. Вес 0,8 на смысловую часть поиска взят из моей " +
-    "предыдущей статьи.");
+  s.addNotes(SPEECH[5]);
 }
 
 // 7. Данные и технологии
@@ -311,9 +299,7 @@ const content = (title) => {
     txt(s, h, { x: x + 1.2, y: y + 0.3, w: 2.1, h: 0.45, fontSize: 15.5, bold: true });
     txt(s, d, { x: x + 1.2, y: y + 0.75, w: 2.1, h: 0.62, fontSize: 12.5, color: P.muted });
   });
-  s.addNotes("Корпус — 20 000 статей arXiv из моего репозитория. Модель локальная — qwen2.5 через Ollama, интернет не " +
-    "нужен. Поиск — BM25 плюс эмбеддинги, метаданные — в SQLite, каждый ответ модели проверяется схемой pydantic, " +
-    "интерфейс — на Streamlit.");
+  s.addNotes(SPEECH[6]);
 }
 
 // 8. Демо: запуск и ход работы
@@ -329,8 +315,7 @@ const content = (title) => {
     { text: "2 ", options: { bold: true, color: "B45309" } }, { text: "Активный агент подсвечен   " },
     { text: "3 ", options: { bold: true, color: "B45309" } }, { text: "Лента сообщений «кто → кому»" }],
     { x: 0.6, y: 6.42, w: 12.1, h: 0.4, fontSize: 14, color: P.muted });
-  s.addNotes("Показываю на примере темы про георадар. На странице «Запуск» ввожу тему и нажимаю «Запустить». " +
-    "На странице «Ход работы» видно, какой агент сейчас работает, и ленту сообщений между агентами.");
+  s.addNotes(SPEECH[7]);
 }
 
 // 9. Демо: результаты
@@ -346,8 +331,7 @@ const content = (title) => {
     { text: "2 ", options: { bold: true, color: "B45309" } }, { text: "Выделенная задача   " },
     { text: "3 ", options: { bold: true, color: "B45309" } }, { text: "Скор и решение по каждой статье" }],
     { x: 0.6, y: 6.42, w: 12.1, h: 0.4, fontSize: 14, color: P.muted });
-  s.addNotes("На странице «Результаты» — выделенная задача, таблица найденных статей со скором и обоснованием " +
-    "отборщика, темы и пробелы и готовый черновик. Ссылки кликабельные и ведут на arXiv, текст можно скачать в DOCX.");
+  s.addNotes(SPEECH[8]);
 }
 
 // 10. Надёжность
@@ -372,9 +356,7 @@ const content = (title) => {
     txt(s, t, { x: x + 1.15, y: y + 0.27, w: 2.6, h: 0.42, fontSize: 15.5, bold: true });
     txt(s, d, { x: x + 1.15, y: y + 0.7, w: 2.6, h: 0.6, fontSize: 12.5, color: P.muted });
   });
-  s.addNotes("Если загрузить, например, CSV, система не падает, а пишет понятную ошибку и подсказку, что делать. " +
-    "Есть лимиты шагов и времени, повторы при сбоях, изоляция ошибок, а при остановке сохраняется частичный " +
-    "результат. В журнале записан каждый шаг каждого агента.");
+  s.addNotes(SPEECH[9]);
 }
 
 // 11. Результаты
@@ -408,9 +390,7 @@ const content = (title) => {
     valGridLine: { color: "E6E8F0", size: 0.75 }, catGridLine: { style: "none" }, showLegend: true,
     legendPos: "r", legendFontFace: FONT, legendFontSize: 11, legendColor: P.muted,
   });
-  s.addNotes(`15 сценариев по 3 прогона, всего ${nRuns}: все успешные — 100 процентов при требовании 90. ` +
-    `Самый загруженный агент — отборщик, ${pct(summary.max_agent_share)} вызовов при лимите 40. ` +
-    "Все 10 тестов проходят.");
+  s.addNotes(SPEECH[10]);
 }
 
 // 12. Итог
@@ -432,9 +412,7 @@ const content = (title) => {
   s.addImage({ path: icon("FaGithub"), x: 0.75, y: 6.1, w: 0.42, h: 0.42 });
   txt(s, "github.com/Armani7777/aiml_assignment_3", { x: 1.35, y: 6.08, w: 8, h: 0.46, fontSize: 16, color: P.lilac,
     valign: "middle", hyperlink: { url: "https://github.com/Armani7777/aiml_assignment_3" } });
-  s.addNotes("Разработана многоагентная система из шести агентов, которая находит работы по той же задаче и пишет " +
-    "проверенный черновик Related Work. Каждая ссылка — реальная статья. Требования по надёжности и нагрузке " +
-    "выполнены. Спасибо, готов ответить на вопросы.");
+  s.addNotes(SPEECH[11]);
 }
 
 // 13. Запасной: сценарии
@@ -448,8 +426,7 @@ const content = (title) => {
     x: 0.6, y: 1.4, w: 12.1, colW: [0.8, 3.9, 2.3, 1.2, 1.9, 2.0], rowH: 0.33, fontFace: FONT, fontSize: 11.5,
     valign: "middle", border: { type: "solid", color: "E2E5EE", pt: 0.75 }, fill: { color: P.white },
     margin: [0, 0.1, 0, 0.1] });
-  s.addNotes("Если спросят про сценарии: 7 содержательных, 5 ошибок входа и окружения, 3 проверки защит. " +
-    "Ошибки входа — это ожидаемый результат: система должна понятно отказать.");
+  s.addNotes(SPEECH[12]);
 }
 
 // 14. Запасной: журнал
@@ -463,8 +440,7 @@ const content = (title) => {
     { x: 7.65, y: 2.75, w: 5.0, h: 2.0, fontSize: 16, paraSpaceAfter: 8 });
   txt(s, "Аудиторский след: по журналу видно, какой агент и на основании чего принял решение",
     { x: 7.65, y: 4.9, w: 5.0, h: 1.0, fontSize: 15, italic: true, color: P.muted });
-  s.addNotes("Если спросят, как проверить решения: в журнале записан каждый вызов модели и инструментов, " +
-    "с фильтром по агенту.");
+  s.addNotes(SPEECH[13]);
 }
 
 pres.writeFile({ fileName: OUT }).then((f) => console.log("saved", f));
